@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:ital@0;1&display=swap');
+
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins",sans-serif;
+}
+:root{
+    --text-color: #fff;
+    --icon-color:#ffffff;
+    --icon-hover-bg:#edeef2;
+    --placeholder-color:#ffffff;
+   --outgoing-chat-bg:linear-gradient(135deg, #222121, #39a751);
+    --incoming-chat-bg:linear-gradient(135deg, #3b3535, #4f729c);
+    --outgoing-chat-border:#343541;
+    --incoming-chat-border:#444654;
+
+}
+.light-mode{
+    --text-color: #090909;
+    --icon-color:#000000;
+    --icon-hover-bg:#070707;
+    --placeholder-color:#2c2c2c;
+    --outgoing-chat-bg:linear-gradient(135deg, #fe88b6, #39a751);
+    --incoming-chat-bg:linear-gradient(135deg, #fdfdfd, #446a98);
+    
+    --outgoing-chat-border:#a89a9a;
+    --incoming-chat-border:#8484a1;
+
+}
+
+body{
+    background: var(--outgoing-chat-bg);
+}
+.chat-container {
+    max-width: 1000vh;
+    padding-bottom: 150px;
+    overflow-y: auto; /* This will enable vertical scrolling */
+}
+.default-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 70vh;
+    padding: 0 10px;
+    text-align: center;
+    color: var(--text-color);
+}
+.default-text h1{
+    padding-top:50px;
+    margin:10px;
+font-size:2.9rem;
+
+}
+.default-text p{
+    margin: 10px;
+    font-size: 1.5rem;
+ }
+
+:where(.chat-container,textarea)::-webkit-scrollbar{
+    width: 6px;
+}
+:where(.chat-container,textarea)::-webkit-scrollbar-track{
+    background: var(--incoming-chat-bg);
+    border-radius: 25px;
+}
+:where(.chat-container,textarea)::-webkit-scrollbar-thumb{
+    background: var(--icon-color);
+    border-radius: 25px;
+}
+.chat-container .chat{
+    color: var(--text-color) ;
+    padding: 25px 50px;
+    display:flex ;
+    color: var(--text-color);
+}
+
+.chat-container .chat.outgoing{
+    background: var(--outgoing-chat-bg);
+    border: 3px solid var(--outgoing-chat-border);
+}
+.chat-container .chat.incoming{
+    background: var(--incoming-chat-bg);
+    border: 1px solid var(--incoming-chat-border);
+}
+.chat .chat-content{
+    display: flex;
+    max-width: 1200px;
+    width: 99%;
+
+    align-items: flex-start;
+    justify-content: space-between;
+    
+}
+.chat .chat-content span{
+    font-size: 1.3rem;
+      color: var(--icon-color);
+  visibility: hidden;
+}
+.chat:hover .chat-content:not(:has(.typing-animation)) span{
+ 
+  visibility: visible;
+}
+
+.chat .chat-details p{
+    white-space: pre-wrap;
+    font-size: 1.05rem;
+    padding: 0 50px 0 25px;
+  }
+
+.chat .chat-details{
+    display: flex;
+  align-items: center;
+}
+.chat .chat-details img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border:2px solid #ac64c0;
+    border-radius: 2px;
+    margin-right:25px;
+}
+
+ .material-symbols-outlined
+{
+    
+    cursor: pointer;
+   }
+
+.typing-animation{
+    display: inline-flex;
+    padding-left:25px;
+}
+.typing-animation .typing-dot{
+    height: 7px;
+    width: 7px;
+    opacity: 0.7;
+    margin: 0 3px;
+    border-radius: 50%;
+    background: var(--text-color);
+    animation: animateDots 1s var(--delay) ease-in-out infinite;
+}
+@keyframes animateDots{
+    0% ,44%{
+        transform: translateY(0px);
+    }
+    22%{
+        opacity: 0.6;
+        transform: translateY(-7px);
+    }
+    44%{
+        opacity: 0.4;
+    }
+}
+
+/* typing content styling */
+.typing-container{
+    position: fixed;
+    padding:20px 10px 20px 10px;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: var(--outgoing-chat-bg);
+    border:1px solid var(--incoming-chat-border)
+}
+.typing-container .typing-content{
+    max-width: 950px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.typing-content .typing-textarea {
+   
+    width: 100%;
+    position:relative;
+    display:flex;
+}
+.typing-textarea textarea{
+    
+    width: 100%;
+    height: 50px;
+    border: none ;
+    resize: none;
+    font-size: 1rem;
+    max-height: 250px;
+    overflow-y: auto;
+    border-radius: 4px;
+    color: var(--text-color);
+    padding: 12px 15px 12px 20px;
+    background:var(--incoming-chat-bg);
+    outline:1px solid var(--incoming-chat-border)
+}
+.typing-textarea textarea:valid ~ span{
+    visibility: visible;
+}
+.typing-textarea span{
+    position: absolute;
+    right:0;
+    bottom: 0;
+    visibility: hidden;
+}
+
+.typing-content span{
+    height: 50px;
+    width: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--icon-color);
+}
+.typing-control{
+    display: flex;
+}
+.typing-control span{
+    margin-left: 7px;
+    font-size: 1.4rem;
+    border-radius: 4px;
+    background:var(--incoming-chat-bg);
+    border: 1px solid var(--incoming-chat-border);
+}
+
+/* Your existing CSS code */
+
+/* Add a media query for screens with a maximum width of 768px (typical mobile devices) */
+@media (max-width: 768px) {
+   
+    .default-text h1 {
+        font-size: 1.7rem;
+    }
+    
+    .default-text p {
+        font-size: 1.1rem;
+    }
+    
+    /* Adjust other elements as needed */
+}
+.chat .chat-details img{
+    width: 50px;
+    height: 50px;
+  
+    border-radius: 2px;
+    margin-right:10px;
+}
+.chat-container .chat{
+    color: var(--text-color) ;
+    padding: 10px 0px 10px 10px;
+    margin-right:0px;
+    display:flex ;
+    color: var(--text-color);
+    font-size:1.1rem;
+}
